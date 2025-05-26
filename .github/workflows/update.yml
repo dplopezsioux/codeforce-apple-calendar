@@ -1,0 +1,39 @@
+name: Generate and publish ICS calendar
+
+# This workflow runs every 6 hours AND can also be triggered manually
+on:
+  schedule:
+    - cron: '0 */6 * * *'    # Every 6 hours
+  workflow_dispatch:         # Manual trigger from GitHub interface
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Pulls the latest version of the repository
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # Sets up Node.js (you can adjust version if needed)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      # Installs dependencies from package.json
+      - name: Install dependencies
+        run: npm install
+
+      # Runs your generate.js script (assumes "start" script = "node generate.js")
+      - name: Generate calendar
+        run: npm start
+
+      # Commits and pushes the updated .ics file in /docs to GitHub
+      - name: Commit and push updated calendar
+        run: |
+          git config user.name "calendar-bot"
+          git config user.email "dplopez.sioux@gmail.com"
+          git add docs/codeforces_div.ics
+          git commit -m "Update ICS calendar" || echo "No changes"
+          git push

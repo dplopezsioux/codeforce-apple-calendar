@@ -1,0 +1,24 @@
+{
+    "name": "codeforce-apple-calendar",
+    "version": "1.0.0",
+    "description": "This repository transforms Codeforces contest data into a publicly subscribable iCloud Calendar, allowing you to easily keep track of upcoming competitions directly within your Apple devices. Simply subscribe to the generated feed to automatically sync Codeforces events with your personal iCloud Calendar.",
+    "main": "generate.js",
+    "type": "module",
+    "scripts": {
+        "start": "node generate.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dplopezsioux/codeforce-apple-calendar.git"
+    },
+    "author": "daniel esequiel perez lopez",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/dplopezsioux/codeforce-apple-calendar/issues"
+    },
+    "homepage": "https://github.com/dplopezsioux/codeforce-apple-calendar#readme",
+    "dependencies": {
+        "ical-generator": "^9.0.0",
+        "node-fetch": "^3.3.2"
+    }
+}
